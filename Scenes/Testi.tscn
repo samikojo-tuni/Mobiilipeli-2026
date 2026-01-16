@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://chhymq4yq2t3m"]
+
+[ext_resource type="Texture2D" uid="uid://xk08asjfpufr" path="res://icon.svg" id="1_rsmoj"]
+
+[node name="Juuri" type="Node2D"]
+
+[node name="Vanhempi" type="Sprite2D" parent="."]
+position = Vector2(624, 136)
+texture = ExtResource("1_rsmoj")
+
+[node name="Lapsi1" type="Sprite2D" parent="Vanhempi"]
+position = Vector2(-115, 173)
+rotation = -0.43836614
+texture = ExtResource("1_rsmoj")
+
+[node name="Lapsi2" type="Sprite2D" parent="Vanhempi"]
+position = Vector2(106, 172)
+rotation = 0.3036873
+scale = Vector2(1.355, 1.355)
+texture = ExtResource("1_rsmoj")
