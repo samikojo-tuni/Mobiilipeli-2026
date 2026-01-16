@@ -19,6 +19,15 @@ config/icon="res://icon.svg"
 
 project/assembly_name="Example"
 
+[file_customization]
+
+folder_colors={
+"res://Art/": "red",
+"res://Audio/": "yellow",
+"res://Fonts/": "blue",
+"res://Scenes/": "purple"
+}
+
 [rendering]
 
 renderer/rendering_method="mobile"
