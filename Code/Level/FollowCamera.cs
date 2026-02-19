@@ -35,4 +35,12 @@ public partial class FollowCamera : Camera2D
 		Vector2 newPosition = currentPosition.Lerp(targetPosition, _speed * deltaTime);
 		GlobalPosition = newPosition;
 	}
+
+	public void SetTarget(Node2D newTarget)
+	{
+		if (newTarget != null)
+		{
+			_target = newTarget;
+		}
+	}
 }
