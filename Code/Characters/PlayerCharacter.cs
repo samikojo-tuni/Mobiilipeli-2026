@@ -3,8 +3,11 @@ using Godot;
 
 public partial class PlayerCharacter : CharacterBody2D
 {
-	public const float Speed = 300.0f;
-	public const float JumpVelocity = -400.0f;
+	[Export]
+	private float _speed = 300.0f;
+
+	[Export]
+	private float _jumpVelocity = -400.0f;
 
 	private float _horizontalMovement = 0;
 	private bool _isJumping = false;
@@ -35,7 +38,7 @@ public partial class PlayerCharacter : CharacterBody2D
 		// Handle Jump.
 		if (_isJumping)
 		{
-			velocity.Y = JumpVelocity;
+			velocity.Y = -1 * _jumpVelocity;
 			_isJumping = false;
 		}
 
@@ -44,11 +47,11 @@ public partial class PlayerCharacter : CharacterBody2D
 
 		if (!Mathf.IsZeroApprox(_horizontalMovement))
 		{
-			velocity.X = _horizontalMovement * Speed;
+			velocity.X = _horizontalMovement * _speed;
 		}
 		else
 		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+			velocity.X = Mathf.MoveToward(Velocity.X, 0, _speed);
 		}
 
 		// "Käytä" luettu syöte.
