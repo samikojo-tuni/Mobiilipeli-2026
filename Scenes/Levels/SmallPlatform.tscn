@@ -6,6 +6,7 @@
 size = Vector2(18, 10)
 
 [node name="SmallPlatform" type="StaticBody2D"]
+collision_mask = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_dqfc1")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dc2e2fiv0swsp"]
+[gd_scene load_steps=5 format=3 uid="uid://dc2e2fiv0swsp"]
 
 [ext_resource type="PackedScene" uid="uid://cfonf177ag17h" path="res://Scenes/Characters/PlayerCharacter.tscn" id="1_5jgm0"]
 [ext_resource type="PackedScene" uid="uid://bsw618415ybs8" path="res://Scenes/Levels/SmallPlatform.tscn" id="2_36ke7"]
 [ext_resource type="Script" uid="uid://c3tbutnhd61av" path="res://Code/Level/FollowCamera.cs" id="2_riv1q"]
+[ext_resource type="PackedScene" uid="uid://bfhhnqvphb68c" path="res://Scenes/Collectables/Coin.tscn" id="4_xvio3"]
 
 [node name="Level1" type="Node2D"]
 
@@ -165,3 +166,11 @@ position = Vector2(268, 171)
 
 [node name="SmallPlatform48" parent="Platforms" instance=ExtResource("2_36ke7")]
 position = Vector2(322, 171)
+
+[node name="Coins" type="Node2D" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource("4_xvio3")]
+position = Vector2(-20, 152)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("4_xvio3")]
+position = Vector2(303, 152)
