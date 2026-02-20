@@ -8,12 +8,15 @@
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_5jgm0")]
 position = Vector2(214, 138)
+_speed = 100.0
+_jumpVelocity = 200.0
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("_target")]
+process_callback = 0
 limit_left = -500
-limit_top = -250
+limit_top = -249
 limit_right = 1500
-limit_bottom = 300
+limit_bottom = 301
 script = ExtResource("2_riv1q")
 _target = NodePath("../PlayerCharacter")
 

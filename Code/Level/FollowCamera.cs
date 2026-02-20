@@ -27,8 +27,28 @@ public partial class FollowCamera : Camera2D
 			return;
 		}
 
-		float deltaTime = (float)delta;
+		if (ProcessCallback == Camera2DProcessCallback.Idle)
+		{
+			UpdatePosition((float)delta);
+		}
+	}
 
+	public override void _PhysicsProcess(double delta)
+	{
+		if (_target == null)
+		{
+			// There's no target, no can do!
+			return;
+		}
+
+		if (ProcessCallback == Camera2DProcessCallback.Physics)
+		{
+			UpdatePosition((float)delta);
+		}
+	}
+
+	private void UpdatePosition(float deltaTime)
+	{
 		// Target's position in the game world in global coordinates.
 		Vector2 targetPosition = _target.GlobalPosition;
 		Vector2 currentPosition = GlobalPosition;
