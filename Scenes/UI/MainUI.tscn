@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7jkftcj5kt0a"]
+
+[ext_resource type="PackedScene" uid="uid://ccehh0uuilx7w" path="res://Scenes/UI/VirtualJoystick/VirtualJoystick.tscn" id="1_52ctl"]
+[ext_resource type="PackedScene" uid="uid://cucpe7qg0r2na" path="res://Scenes/UI/VirtualJoystick/VirtualButton.tscn" id="2_4cpe4"]
+
+[node name="MainUI" type="CanvasLayer"]
+
+[node name="VirtualJoystick" parent="." instance=ExtResource("1_52ctl")]
+position = Vector2(40, 320)
+_leftAction = &"MoveLeft"
+_rightAction = &"MoveRight"
+_upAction = &""
+_downAction = &""
+
+[node name="VirtualButton" parent="." instance=ExtResource("2_4cpe4")]
+position = Vector2(600, 320)
+_actionName = &"Jump"
