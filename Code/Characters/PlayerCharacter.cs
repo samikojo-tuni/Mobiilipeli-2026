@@ -27,17 +27,14 @@ public partial class PlayerCharacter : CharacterBody2D
 		}
 	}
 
-	public override void _Input(InputEvent @event)
-	{
-		if (@event.IsActionPressed(InputConfig.InputJump) && IsOnFloor())
-		{
-			_isJumping = true;
-		}
-	}
-
 	public override void _Process(double delta)
 	{
 		_horizontalMovement = Input.GetAxis(InputConfig.InputLeft, InputConfig.InputRight);
+
+		if (Input.IsActionJustPressed(InputConfig.InputJump) && IsOnFloor())
+		{
+			_isJumping = true;
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)

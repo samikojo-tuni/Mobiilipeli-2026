@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dc2e2fiv0swsp"]
+[gd_scene load_steps=11 format=4 uid="uid://dc2e2fiv0swsp"]
 
 [ext_resource type="Script" uid="uid://47d8l6uo7irp" path="res://Code/Level/LevelController.cs" id="1_4d3fe"]
 [ext_resource type="PackedScene" uid="uid://cfonf177ag17h" path="res://Scenes/Characters/PlayerCharacter.tscn" id="1_5jgm0"]
@@ -8,6 +8,7 @@
 [ext_resource type="TileSet" uid="uid://bidd783uqwk2n" path="res://Level/Tiles/LevelTiles-NoCollision.tres" id="5_kri6y"]
 [ext_resource type="Script" uid="uid://cwon2v6shhc0j" path="res://Code/Level/Goal.cs" id="7_8h4de"]
 [ext_resource type="Texture2D" uid="uid://dgulh6c8yusqn" path="res://Art/sprites/world_tileset.png" id="8_jcebb"]
+[ext_resource type="PackedScene" uid="uid://c7jkftcj5kt0a" path="res://Scenes/UI/MainUI.tscn" id="9_jcebb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3nwb"]
 
@@ -74,3 +75,5 @@ frame = 132
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
 shape = SubResource("RectangleShape2D_f3nwb")
+
+[node name="MainUI" parent="." instance=ExtResource("9_jcebb")]
