@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://dqccngm2a1q6t"]
+
+[ext_resource type="PackedScene" uid="uid://cv76i21yjk4vg" path="res://Scenes/Characters/EnemyCharacter.tscn" id="1_mnu50"]
+[ext_resource type="Texture2D" uid="uid://bpo4h6g4h1711" path="res://Art/sprites/slime_green.png" id="2_bkfbx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkfbx"]
+atlas = ExtResource("2_bkfbx")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgeke"]
+atlas = ExtResource("2_bkfbx")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yshtd"]
+atlas = ExtResource("2_bkfbx")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36vdm"]
+atlas = ExtResource("2_bkfbx")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trs77"]
+atlas = ExtResource("2_bkfbx")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrxms"]
+atlas = ExtResource("2_bkfbx")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_loi58"]
+atlas = ExtResource("2_bkfbx")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvifm"]
+atlas = ExtResource("2_bkfbx")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jgeke"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkfbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgeke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yshtd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36vdm")
+}],
+"loop": false,
+"name": &"damage",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trs77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yrxms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_loi58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvifm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="PathFollow2D" instance=ExtResource("1_mnu50")]
+_speed = 5.0
+
+[node name="AnimatedSprite2D" parent="EnemyCharacter" index="1"]
+sprite_frames = SubResource("SpriteFrames_jgeke")
+frame_progress = 0.05605751
+
+[node name="Health" parent="EnemyCharacter" index="3"]
+_maxHealth = 1
+_initialHealth = 1

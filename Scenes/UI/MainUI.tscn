@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7jkftcj5kt0a"]
+[gd_scene load_steps=4 format=3 uid="uid://c7jkftcj5kt0a"]
 
 [ext_resource type="PackedScene" uid="uid://ccehh0uuilx7w" path="res://Scenes/UI/VirtualJoystick/VirtualJoystick.tscn" id="1_52ctl"]
 [ext_resource type="PackedScene" uid="uid://cucpe7qg0r2na" path="res://Scenes/UI/VirtualJoystick/VirtualButton.tscn" id="2_4cpe4"]
+[ext_resource type="PackedScene" uid="uid://b1203lovrjhun" path="res://Scenes/UI/HealthBar/HealthBar.tscn" id="3_4cpe4"]
 
 [node name="MainUI" type="CanvasLayer"]
+layer = 100
 
 [node name="VirtualJoystick" parent="." instance=ExtResource("1_52ctl")]
 position = Vector2(40, 320)
@@ -11,7 +13,11 @@ _leftAction = &"MoveLeft"
 _rightAction = &"MoveRight"
 _upAction = &""
 _downAction = &""
+_useOnlyInBuild = true
 
 [node name="VirtualButton" parent="." instance=ExtResource("2_4cpe4")]
 position = Vector2(600, 320)
 _actionName = &"Jump"
+_useOnlyInBuild = true
+
+[node name="HealthBar" parent="." instance=ExtResource("3_4cpe4")]

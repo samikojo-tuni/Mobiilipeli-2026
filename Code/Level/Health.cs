@@ -3,6 +3,8 @@ using Godot;
 
 public partial class Health : Node
 {
+	// Signal which is emitted whenever the health changes.
+	[Signal] public delegate void HealthChangedEventHandler(int previousHealth, int currentHealth);
 	[Export] private int _maxHealth = 3;
 	[Export] private int _initialHealth = 3;
 
@@ -13,13 +15,27 @@ public partial class Health : Node
 		get { return _currentHealth; }
 		set
 		{
+			int previous = _currentHealth;
 			_currentHealth = Mathf.Clamp(value, 0, _maxHealth);
+			// Emits the signal about the health change.
+			EmitSignal(SignalName.HealthChanged, previous, _currentHealth);
 		}
 	}
+
+	public bool IsImmortal
+	{
+		get;
+		set;
+	} = false;
 
 	public int MaxHealth
 	{
 		get => _maxHealth;
+	}
+
+	public bool IsAlive
+	{
+		get { return CurrentHealth > 0; }
 	}
 
 	// Called when the node enters the scene tree for the first time.

@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://bl4yk213qfbng"]
+
+[ext_resource type="PackedScene" uid="uid://cv76i21yjk4vg" path="res://Scenes/Characters/EnemyCharacter.tscn" id="1_h1x5i"]
+[ext_resource type="Texture2D" uid="uid://dj8kp7fhaseif" path="res://Art/sprites/slime_purple.png" id="2_dt6k0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dt6k0"]
+atlas = ExtResource("2_dt6k0")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfevo"]
+atlas = ExtResource("2_dt6k0")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ia1gg"]
+atlas = ExtResource("2_dt6k0")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8mxu"]
+atlas = ExtResource("2_dt6k0")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5buow"]
+atlas = ExtResource("2_dt6k0")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28frm"]
+atlas = ExtResource("2_dt6k0")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkk6u"]
+atlas = ExtResource("2_dt6k0")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_360cn"]
+atlas = ExtResource("2_dt6k0")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tfevo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dt6k0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfevo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ia1gg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8mxu")
+}],
+"loop": false,
+"name": &"damage",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5buow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28frm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkk6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_360cn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="PathFollow2D" instance=ExtResource("1_h1x5i")]
+
+[node name="AnimatedSprite2D" parent="EnemyCharacter" index="1"]
+sprite_frames = SubResource("SpriteFrames_tfevo")
+frame_progress = 0.39943537

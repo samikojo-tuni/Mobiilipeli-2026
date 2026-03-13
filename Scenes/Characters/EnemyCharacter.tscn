@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://cv76i21yjk4vg"]
+
+[ext_resource type="Script" uid="uid://chcw8d6phodtv" path="res://Code/Characters/PathFollower.cs" id="1_70gjm"]
+[ext_resource type="Script" uid="uid://dhor7okmuk2go" path="res://Code/Characters/EnemyCharacter.cs" id="1_il0v8"]
+[ext_resource type="Script" uid="uid://4xxytaxy5ssj" path="res://Code/Level/Health.cs" id="3_70gjm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xjtak"]
+radius = 5.0
+height = 18.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7mww"]
+size = Vector2(4, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5fll"]
+size = Vector2(4, 13)
+
+[node name="PathFollow2D" type="PathFollow2D"]
+script = ExtResource("1_70gjm")
+_speed = 10.0
+
+[node name="EnemyCharacter" type="Area2D" parent="." node_paths=PackedStringArray("_damagerAreas")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_il0v8")
+_damagerAreas = [NodePath("DamageZones/Front"), NodePath("DamageZones/Back")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyCharacter"]
+position = Vector2(0, -9)
+shape = SubResource("CapsuleShape2D_xjtak")
+debug_color = Color(3.3450872e-06, 0.6499269, 0.13578194, 0.41960785)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyCharacter"]
+position = Vector2(0, -12)
+autoplay = "default"
+
+[node name="DamageZones" type="Node2D" parent="EnemyCharacter"]
+
+[node name="Front" type="Area2D" parent="EnemyCharacter/DamageZones"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyCharacter/DamageZones/Front"]
+position = Vector2(6, -6.5)
+shape = SubResource("RectangleShape2D_a7mww")
+debug_color = Color(0.9939143, 0, 0.23738575, 0.41960785)
+
+[node name="Back" type="Area2D" parent="EnemyCharacter/DamageZones"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyCharacter/DamageZones/Back"]
+position = Vector2(-6, -6.5)
+shape = SubResource("RectangleShape2D_o5fll")
+debug_color = Color(0.9939143, 0, 0.23738575, 0.41960785)
+
+[node name="Health" type="Node" parent="EnemyCharacter"]
+script = ExtResource("3_70gjm")

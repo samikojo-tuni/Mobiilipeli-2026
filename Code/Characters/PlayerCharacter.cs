@@ -9,8 +9,12 @@ public partial class PlayerCharacter : CharacterBody2D
 	[Export]
 	private float _jumpVelocity = -400.0f;
 
+	[Export] private double _damageTime = 1f;
+
 	private float _horizontalMovement = 0;
 	private bool _isJumping = false;
+	private Timer _timer = null;
+	private AnimatedSprite2D _animatedSprite = null;
 
 	public Health Health
 	{
@@ -25,6 +29,22 @@ public partial class PlayerCharacter : CharacterBody2D
 		{
 			GD.PushError("Can't find the Health node");
 		}
+		else
+		{
+			Health.HealthChanged += OnHealthChanged;
+		}
+
+		_timer = GetNode<Timer>("Timer");
+		if (_timer == null)
+		{
+			GD.PushError("Can't find the Timer node");
+		}
+
+		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		if (_animatedSprite == null)
+		{
+			GD.PushError("Can't find the AnimatedSprite2D node");
+		}
 	}
 
 	public override void _Process(double delta)
@@ -35,6 +55,8 @@ public partial class PlayerCharacter : CharacterBody2D
 		{
 			_isJumping = true;
 		}
+
+		UpdateAnimations();
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -60,6 +82,7 @@ public partial class PlayerCharacter : CharacterBody2D
 		if (!Mathf.IsZeroApprox(_horizontalMovement))
 		{
 			velocity.X = _horizontalMovement * _speed;
+			_animatedSprite.FlipH = _horizontalMovement < 0;
 		}
 		else
 		{
@@ -71,5 +94,52 @@ public partial class PlayerCharacter : CharacterBody2D
 
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	private void OnHealthChanged(int previousHealth, int currentHealth)
+	{
+		if (currentHealth <= 0)
+		{
+			Die();
+		}
+		else if (currentHealth < previousHealth && _timer != null)
+		{
+			// The character lost health
+			_timer.Start(_damageTime);
+			_timer.Timeout += OnTimerTimeout;
+			Health.IsImmortal = true;
+		}
+	}
+
+	private void OnTimerTimeout()
+	{
+		_timer.Timeout -= OnTimerTimeout;
+		Health.IsImmortal = false;
+	}
+
+	private void Die()
+	{
+		GD.Print("Player character died!");
+		// TODO: Replace me with a proper implementation.
+	}
+
+	private void UpdateAnimations()
+	{
+		if (Health.IsImmortal)
+		{
+			_animatedSprite.Play("damage");
+		}
+		else if (!IsOnFloor())
+		{
+			_animatedSprite.Play("jump");
+		}
+		else if (Mathf.IsZeroApprox(Velocity.X))
+		{
+			_animatedSprite.Play("idle");
+		}
+		else
+		{
+			_animatedSprite.Play("move");
+		}
 	}
 }
