@@ -3,11 +3,10 @@ using Godot;
 
 namespace GA.Common.UI;
 
-public partial class VirtualButton : Node2D
+public partial class VirtualButton : VirtualControl
 {
 	[Export] private TouchScreenButton _button = null;
 	[Export] private StringName _actionName = "ui_accept";
-	[Export] private bool _useOnlyInBuild = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -43,7 +42,7 @@ public partial class VirtualButton : Node2D
 
 	private void OnButtonUp()
 	{
-		if (_useOnlyInBuild && OS.HasFeature("editor"))
+		if (UseOnlyInBuild && OS.HasFeature("editor"))
 		{
 			return;
 		}
@@ -57,7 +56,7 @@ public partial class VirtualButton : Node2D
 
 	private void OnButtonDown()
 	{
-		if (_useOnlyInBuild && OS.HasFeature("editor"))
+		if (UseOnlyInBuild && OS.HasFeature("editor"))
 		{
 			return;
 		}

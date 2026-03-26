@@ -3,19 +3,20 @@ using Godot;
 
 namespace GA.Common.UI;
 
-public partial class VirtualJoystick : Node2D
+public partial class VirtualJoystick : VirtualControl
 {
 	[Export] private StringName _leftAction = "ui_left";
 	[Export] private StringName _rightAction = "ui_right";
 	[Export] private StringName _upAction = "ui_up";
 	[Export] private StringName _downAction = "ui_down";
-	[Export] private bool _useOnlyInBuild = false;
 
 	public Vector2 RelativePosition { get; set; } = Vector2.Zero;
 
 	public override void _Process(double delta)
 	{
-		if (_useOnlyInBuild && OS.HasFeature("editor"))
+		base._Process(delta);
+
+		if (UseOnlyInBuild && OS.HasFeature("editor"))
 		{
 			return;
 		}
@@ -26,7 +27,7 @@ public partial class VirtualJoystick : Node2D
 
 	private void HandleActionPress()
 	{
-		if (_useOnlyInBuild && OS.HasFeature("editor"))
+		if (UseOnlyInBuild && OS.HasFeature("editor"))
 		{
 			return;
 		}
@@ -52,7 +53,7 @@ public partial class VirtualJoystick : Node2D
 
 	private void HandleActionRelease()
 	{
-		if (_useOnlyInBuild && OS.HasFeature("editor"))
+		if (UseOnlyInBuild && OS.HasFeature("editor"))
 		{
 			return;
 		}

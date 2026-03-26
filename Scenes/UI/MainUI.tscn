@@ -13,11 +13,14 @@ _leftAction = &"MoveLeft"
 _rightAction = &"MoveRight"
 _upAction = &""
 _downAction = &""
+_anchorOffset = Vector2(48, 48)
 _useOnlyInBuild = true
 
 [node name="VirtualButton" parent="." instance=ExtResource("2_4cpe4")]
 position = Vector2(600, 320)
 _actionName = &"Jump"
+_anchorCorner = 3
+_anchorOffset = Vector2(48, 48)
 _useOnlyInBuild = true
 
 [node name="HealthBar" parent="." instance=ExtResource("3_4cpe4")]
