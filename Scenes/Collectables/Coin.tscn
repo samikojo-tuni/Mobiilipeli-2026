@@ -1,7 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://bfhhnqvphb68c"]
+[gd_scene load_steps=22 format=3 uid="uid://bfhhnqvphb68c"]
 
 [ext_resource type="Script" uid="uid://bmx7yndf1o0ql" path="res://Code/Level/Collectable/Coin.cs" id="1_0m560"]
 [ext_resource type="Texture2D" uid="uid://bqvjjvuch45sr" path="res://Art/sprites/coin.png" id="1_y41qh"]
+[ext_resource type="AudioStream" uid="uid://bmlbadyrc8wpd" path="res://Audio/sounds/coin.wav" id="3_g4flr"]
+[ext_resource type="Texture2D" uid="uid://b3igjgk5sxbxx" path="res://Art/sprites/star.png" id="4_wxql6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0m560"]
 radius = 5.0990195
@@ -98,10 +100,34 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Coin" type="Area2D"]
+[sub_resource type="Gradient" id="Gradient_otqq5"]
+offsets = PackedFloat32Array(0, 0.5538462, 1)
+colors = PackedColorArray(1, 1, 0, 1, 1, 1, 0.7692308, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sixkn"]
+gradient = SubResource("Gradient_otqq5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_81sgl"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 7.14
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 0, 0)
+angular_velocity_min = -45.000015
+angular_velocity_max = 44.999985
+gravity = Vector3(0, 0, 0)
+scale_min = 0.19999999
+scale_max = 0.59999996
+color_ramp = SubResource("GradientTexture1D_sixkn")
+
+[node name="Coin" type="Area2D" node_paths=PackedStringArray("_audioClip", "_animatedSprite", "_particleEffect")]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_0m560")
+_audioClip = NodePath("AudioStreamPlayer2D")
+_animatedSprite = NodePath("AnimatedSprite2D")
+_particleEffect = NodePath("GPUParticles2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0m560")
@@ -110,3 +136,16 @@ shape = SubResource("CircleShape2D_0m560")
 sprite_frames = SubResource("SpriteFrames_bmb6u")
 autoplay = "default"
 frame_progress = 0.57576144
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_g4flr")
+bus = &"Effects"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 20
+texture = ExtResource("4_wxql6")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_81sgl")

@@ -34,14 +34,19 @@ public partial class Collectable : Area2D
 	/// <param name="body">Viittaus työmäävään kappaleeseen.</param>
 	private void OnBodyEntered(Node2D body)
 	{
+		if (_isCollected)
+		{
+			// Do not allow collecting this object more than once.
+			return;
+		}
+
 		if (body is PlayerCharacter playerCharacter)
 		{
 			// Törmäys tapahtui pelaajan kanssa. Reagoi siihen.
 			_isCollected = true;
 			Collect(playerCharacter);
 
-			// Poista kerättävä Node kuluvan framen päätteeksi.
-			QueueFree(); // Käytä tätä Free:n sijaan, turvallisempi!
+			Clear();
 		}
 	}
 
@@ -50,5 +55,11 @@ public partial class Collectable : Area2D
 	// Protected tarkoittaa sitä, että metodi on saatavilla lapsiluokalle (mutta ei julkisesti).
 	protected virtual void Collect(PlayerCharacter playerCharacter)
 	{
+	}
+
+	protected virtual void Clear()
+	{
+		// Poista kerättävä Node kuluvan framen päätteeksi.
+		QueueFree(); // Käytä tätä Free:n sijaan, turvallisempi!
 	}
 }
