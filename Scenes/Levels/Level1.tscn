@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dc2e2fiv0swsp"]
+[gd_scene load_steps=20 format=4 uid="uid://dc2e2fiv0swsp"]
 
 [ext_resource type="Script" uid="uid://47d8l6uo7irp" path="res://Code/Level/LevelController.cs" id="1_4d3fe"]
 [ext_resource type="PackedScene" uid="uid://cfonf177ag17h" path="res://Scenes/Characters/PlayerCharacter.tscn" id="1_5jgm0"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bl4yk213qfbng" path="res://Scenes/Characters/StrongEnemyCharacter.tscn" id="11_57lp3"]
 [ext_resource type="Script" uid="uid://chcw8d6phodtv" path="res://Code/Characters/PathFollower.cs" id="12_n5ptj"]
 [ext_resource type="Script" uid="uid://bke3vqfh3me2u" path="res://Code/Level/KillZone.cs" id="13_77iba"]
+[ext_resource type="PackedScene" uid="uid://bm5qesajysjhs" path="res://Scenes/Tutorials/Tutorial.tscn" id="14_67y36"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3nwb"]
 
@@ -138,4 +139,16 @@ script = ExtResource("13_77iba")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
 shape = SubResource("WorldBoundaryShape2D_n5ptj")
 
+[node name="Tutorials" type="Node2D" parent="."]
+
+[node name="Tutorial" parent="Tutorials" instance=ExtResource("14_67y36")]
+position = Vector2(185, 136)
+
+[node name="Control" parent="Tutorials/Tutorial" index="2"]
+offset_top = -105.0
+
+[node name="TutorialText" parent="Tutorials/Tutorial/Control/NinePatchRect" index="0"]
+text = "TUTORIAL_001"
+
 [editable path="MainUI"]
+[editable path="Tutorials/Tutorial"]

@@ -1,6 +1,6 @@
 keys;en;fi
-TUTORIAL_001;Move either with arrows or  with WASD keys. Jump with SPACE key. Gamepad works too.;Liiku joko nuoli- tai WASD-painikkeilla. Hyppää SPACE:lla. Gamepad toimii myös.
-SCORE;Score: %s;Pisteet: %s
+TUTORIAL_001;Move either with arrows or with WASD keys. Jump with SPACE key. Gamepad works too.;Liiku joko nuoli- tai WASD-painikkeilla. Hyppää SPACE:lla. Gamepad toimii myös.
+SCORE;Score: {0};Pisteet: {0}
 PAUSE;Pause;Tauko
 LANGUAGE;Language;Kieli
 CLOSE;Close;Sulje

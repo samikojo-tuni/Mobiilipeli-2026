@@ -115,6 +115,11 @@ public partial class GameManager : Node
 		}
 	}
 
+	public void SetLocale(string locale)
+	{
+		TranslationServer.SetLocale(locale);
+	}
+
 	private void LoadScene(string path)
 	{
 		if (CurrentLevel != null)

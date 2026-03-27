@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://bm5qesajysjhs"]
+
+[ext_resource type="Script" uid="uid://dorotxl4kocbt" path="res://Code/Systems/Tutorial.cs" id="1_08uxq"]
+[ext_resource type="Texture2D" uid="uid://dgulh6c8yusqn" path="res://Art/sprites/world_tileset.png" id="1_ffnak"]
+[ext_resource type="Texture2D" uid="uid://d2j2dqhf68nt5" path="res://Art/sprites/UI/ui-border.png" id="2_vaupc"]
+[ext_resource type="Theme" uid="uid://db0k0y5fk53pu" path="res://Config/UITheme.tres" id="3_08uxq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hbi12"]
+size = Vector2(16, 16)
+
+[node name="Tutorial" type="Area2D" node_paths=PackedStringArray("_tutorialText")]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_08uxq")
+_tutorialText = NodePath("Control")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ffnak")
+hframes = 16
+vframes = 16
+frame = 56
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hbi12")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -45.0
+offset_top = -85.0
+offset_right = 45.0
+offset_bottom = -11.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vaupc")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="TutorialText" type="Label" parent="Control/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_08uxq")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Test text "
+autowrap_mode = 2

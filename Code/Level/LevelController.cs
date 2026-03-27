@@ -35,6 +35,22 @@ public partial class LevelController : Node2D
 		}
 	}
 
+	public override void _Process(double delta)
+	{
+		if (OS.HasFeature("editor"))
+		{
+			if (Input.IsActionJustPressed("SetFI"))
+			{
+				GameManager.Instance.SetLocale("fi");
+			}
+
+			if (Input.IsActionJustPressed("SetEN"))
+			{
+				GameManager.Instance.SetLocale("en");
+			}
+		}
+	}
+
 	public void Respawn()
 	{
 		_player.GlobalPosition = _spawnPoint;
