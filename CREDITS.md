@@ -1,12 +1,4 @@
-All assets in the pack have been repackaged and many have been modified by Brackeys.
-
-
-LICENSE for all assets:
-
-Creative Commons Zero (CC0)
-
-
-CREDIT:
+## CREDIT
 
 SPRITES by analogStudios_:
 knight (https://analogstudios.itch.io/camelot)
@@ -24,3 +16,7 @@ SOUNDS by Brackeys, Asbjørn Thirslund
 MUSIC by Brackeys, Sofia Thirslund
 
 FONTS by Jayvee Enaguas - HarvettFox96 - (https://www.dafont.com/pixel-operator.font?l[]=10&l[]=1)
+
+UI SPRITES (heart, virtual controls, ui-border) by Sami Kojo
+
+FLAGS by DaFluffyPotato - (https://dafluffypotato.itch.io/pixel-country-flags)
