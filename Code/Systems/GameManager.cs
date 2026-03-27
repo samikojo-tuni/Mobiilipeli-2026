@@ -73,6 +73,11 @@ public partial class GameManager : Node
 
 	#endregion
 
+	public override void _Ready()
+	{
+		LoadSettings();
+	}
+
 	/// <summary>
 	/// Adds the <paramref name="amount"/> to the score.
 	/// </summary>
@@ -142,5 +147,47 @@ public partial class GameManager : Node
 		{
 			GD.PushError($"Can't load a scene at the path {path}");
 		}
+	}
+
+	private void LoadSettings()
+	{
+		ConfigFile settingsFile = new ConfigFile();
+
+		float masterVolume = SettingsConfig.DEFAULT_VOLUME_LINEAR;
+		float musicVolume = SettingsConfig.DEFAULT_VOLUME_LINEAR;
+		float effectsVolume = SettingsConfig.DEFAULT_VOLUME_LINEAR;
+
+		string locale = SettingsConfig.DEFAULT_LOCALE;
+
+		Error loadError = settingsFile.Load(SettingsConfig.SETTINGS_PATH);
+		if (loadError == Error.Ok)
+		{
+			// Loading the settings file succeeded.
+			string section = SettingsConfig.AUDIO_SECTION;
+			masterVolume = (float)settingsFile.GetValue(section, SettingsConfig.MASTER_BUS, SettingsConfig.DEFAULT_VOLUME_LINEAR);
+			musicVolume = (float)settingsFile.GetValue(section, SettingsConfig.MUSIC_BUS, SettingsConfig.DEFAULT_VOLUME_LINEAR);
+			effectsVolume = (float)settingsFile.GetValue(section, SettingsConfig.EFFECTS_BUS, SettingsConfig.DEFAULT_VOLUME_LINEAR);
+
+			section = SettingsConfig.LANGUAGE_SECTION;
+			locale = (string)settingsFile.GetValue(section, SettingsConfig.LANGUAGE, SettingsConfig.DEFAULT_LOCALE);
+		}
+
+		SetVolume(SettingsConfig.MASTER_BUS, masterVolume);
+		SetVolume(SettingsConfig.MUSIC_BUS, musicVolume);
+		SetVolume(SettingsConfig.EFFECTS_BUS, effectsVolume);
+
+		SetLocale(locale);
+	}
+
+	private bool SetVolume(string audioBus, float linearVolume)
+	{
+		int busIndex = AudioServer.GetBusIndex(audioBus);
+		if (busIndex >= 0)
+		{
+			float dbVolume = Mathf.LinearToDb(linearVolume);
+			AudioServer.SetBusVolumeDb(busIndex, dbVolume);
+		}
+
+		return busIndex >= 0;
 	}
 }

@@ -3,10 +3,6 @@ using Godot;
 
 public partial class MainUi : CanvasLayer
 {
-	public const string MASTER_BUS = "Master";
-	public const string MUSIC_BUS = "Music";
-	public const string EFFECTS_BUS = "Effects";
-
 	[Export] private Label _scoreLabel = null;
 	[Export] private BaseButton _fiButton = null;
 	[Export] private BaseButton _enButton = null;
@@ -69,8 +65,26 @@ public partial class MainUi : CanvasLayer
 
 	public void ClosePause()
 	{
+		SaveSettings();
 		GameManager.Instance.SceneTree.Paused = false;
 		_pauseMenu.Hide();
+	}
+
+	private void SaveSettings()
+	{
+		ConfigFile settingsFile = new ConfigFile();
+
+		string section = SettingsConfig.AUDIO_SECTION;
+
+		settingsFile.SetValue(section, SettingsConfig.MASTER_BUS, _masterVolume.Value);
+		settingsFile.SetValue(section, SettingsConfig.MUSIC_BUS, _musicVolume.Value);
+		settingsFile.SetValue(section, SettingsConfig.EFFECTS_BUS, _effectsVolume.Value);
+
+		section = SettingsConfig.LANGUAGE_SECTION;
+		string currentLocale = TranslationServer.GetLocale();
+		settingsFile.SetValue(section, SettingsConfig.LANGUAGE, currentLocale);
+
+		settingsFile.Save(SettingsConfig.SETTINGS_PATH);
 	}
 
 	private void OnScoreChanged(int currentScore)
@@ -118,9 +132,9 @@ public partial class MainUi : CanvasLayer
 
 	private void InitializeAudio()
 	{
-		_masterBusIndex = AudioServer.GetBusIndex(MASTER_BUS);
-		_musicBusIndex = AudioServer.GetBusIndex(MUSIC_BUS);
-		_effectsBusIndex = AudioServer.GetBusIndex(EFFECTS_BUS);
+		_masterBusIndex = AudioServer.GetBusIndex(SettingsConfig.MASTER_BUS);
+		_musicBusIndex = AudioServer.GetBusIndex(SettingsConfig.MUSIC_BUS);
+		_effectsBusIndex = AudioServer.GetBusIndex(SettingsConfig.EFFECTS_BUS);
 
 		SetVolume(_masterBusIndex, _masterVolume);
 		SetVolume(_musicBusIndex, _musicVolume);
