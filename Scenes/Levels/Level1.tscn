@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://dc2e2fiv0swsp"]
+[gd_scene load_steps=21 format=4 uid="uid://dc2e2fiv0swsp"]
 
 [ext_resource type="Script" uid="uid://47d8l6uo7irp" path="res://Code/Level/LevelController.cs" id="1_4d3fe"]
 [ext_resource type="PackedScene" uid="uid://cfonf177ag17h" path="res://Scenes/Characters/PlayerCharacter.tscn" id="1_5jgm0"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://chcw8d6phodtv" path="res://Code/Characters/PathFollower.cs" id="12_n5ptj"]
 [ext_resource type="Script" uid="uid://bke3vqfh3me2u" path="res://Code/Level/KillZone.cs" id="13_77iba"]
 [ext_resource type="PackedScene" uid="uid://bm5qesajysjhs" path="res://Scenes/Tutorials/Tutorial.tscn" id="14_67y36"]
+[ext_resource type="AudioStream" uid="uid://bq3k2osj0afu8" path="res://Audio/music/time_for_adventure.mp3" id="15_hk4vc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3nwb"]
 
@@ -150,6 +151,12 @@ offset_top = -105.0
 
 [node name="TutorialText" parent="Tutorials/Tutorial/Control/NinePatchRect" index="0"]
 text = "TUTORIAL_001"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("15_hk4vc")
+autoplay = true
+bus = &"Music"
 
 [editable path="MainUI"]
 [editable path="Tutorials/Tutorial"]

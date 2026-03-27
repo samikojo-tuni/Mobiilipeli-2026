@@ -9,14 +9,17 @@
 [ext_resource type="Texture2D" uid="uid://bcv81xxf2ctw3" path="res://Art/UI/Flags/fi.png" id="7_0qsyn"]
 [ext_resource type="Texture2D" uid="uid://b5omi6uyroy6c" path="res://Art/UI/Flags/gb.png" id="8_vryf0"]
 
-[node name="MainUI" type="CanvasLayer" node_paths=PackedStringArray("_scoreLabel", "_fiButton", "_enButton", "_closeButton", "_pauseMenu")]
+[node name="MainUI" type="CanvasLayer" node_paths=PackedStringArray("_scoreLabel", "_fiButton", "_enButton", "_closeButton", "_pauseMenu", "_masterVolume", "_musicVolume", "_effectsVolume")]
 layer = 100
 script = ExtResource("1_upwrp")
 _scoreLabel = NodePath("ScoreLabel")
-_fiButton = NodePath("PauseMenu/Background/HBoxContainer/FIButton")
-_enButton = NodePath("PauseMenu/Background/HBoxContainer/ENButton")
+_fiButton = NodePath("PauseMenu/Background/Languages/FIButton")
+_enButton = NodePath("PauseMenu/Background/Languages/ENButton")
 _closeButton = NodePath("PauseMenu/Background/CloseButton")
 _pauseMenu = NodePath("PauseMenu")
+_masterVolume = NodePath("PauseMenu/Background/Volume/MasterVolume")
+_musicVolume = NodePath("PauseMenu/Background/Volume/MusicVolume")
+_effectsVolume = NodePath("PauseMenu/Background/Volume/EffectsVolume")
 
 [node name="VirtualJoystick" parent="." instance=ExtResource("1_52ctl")]
 position = Vector2(40, 320)
@@ -95,7 +98,7 @@ text = "PAUSE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PauseMenu/Background"]
+[node name="Languages" type="HBoxContainer" parent="PauseMenu/Background"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -106,17 +109,89 @@ offset_bottom = 55.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="FIButton" type="TextureButton" parent="PauseMenu/Background/HBoxContainer"]
+[node name="FIButton" type="TextureButton" parent="PauseMenu/Background/Languages"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = ExtResource("7_0qsyn")
 stretch_mode = 5
 
-[node name="ENButton" type="TextureButton" parent="PauseMenu/Background/HBoxContainer"]
+[node name="ENButton" type="TextureButton" parent="PauseMenu/Background/Languages"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = ExtResource("8_vryf0")
 stretch_mode = 5
+
+[node name="Volume" type="Control" parent="PauseMenu/Background"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 3.0
+offset_top = 60.0
+offset_right = -3.0
+offset_bottom = 270.0
+grow_horizontal = 2
+
+[node name="MasterLabel" type="Label" parent="PauseMenu/Background/Volume"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "MASTER"
+horizontal_alignment = 1
+
+[node name="MasterVolume" type="HSlider" parent="PauseMenu/Background/Volume"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 10.0
+offset_bottom = 26.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.0
+
+[node name="MusicLabel" type="Label" parent="PauseMenu/Background/Volume"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 28.0
+offset_bottom = 36.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "MUSIC"
+horizontal_alignment = 1
+
+[node name="MusicVolume" type="HSlider" parent="PauseMenu/Background/Volume"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 38.0
+offset_bottom = 54.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.0
+
+[node name="EffectsLabel" type="Label" parent="PauseMenu/Background/Volume"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 60.0
+offset_bottom = 68.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "EFFECTS"
+horizontal_alignment = 1
+
+[node name="EffectsVolume" type="HSlider" parent="PauseMenu/Background/Volume"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 70.0
+offset_bottom = 86.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.0
 
 [node name="CloseButton" type="Button" parent="PauseMenu/Background"]
 layout_mode = 1

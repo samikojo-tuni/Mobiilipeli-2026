@@ -4,3 +4,6 @@ SCORE;Score: {0};Pisteet: {0}
 PAUSE;Pause;Tauko
 LANGUAGE;Language;Kieli
 CLOSE;Close;Sulje
+MASTER;Master volume;Äänenvoimakkuus
+MUSIC;Music;Musiikki
+EFFECTS;Effects;Tehosteet
