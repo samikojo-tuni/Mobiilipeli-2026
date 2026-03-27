@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7jkftcj5kt0a"]
+[gd_scene load_steps=6 format=3 uid="uid://c7jkftcj5kt0a"]
 
 [ext_resource type="PackedScene" uid="uid://ccehh0uuilx7w" path="res://Scenes/UI/VirtualJoystick/VirtualJoystick.tscn" id="1_52ctl"]
+[ext_resource type="Script" uid="uid://hbjwdptitxl8" path="res://Code/UI/MainUi.cs" id="1_upwrp"]
 [ext_resource type="PackedScene" uid="uid://cucpe7qg0r2na" path="res://Scenes/UI/VirtualJoystick/VirtualButton.tscn" id="2_4cpe4"]
 [ext_resource type="PackedScene" uid="uid://b1203lovrjhun" path="res://Scenes/UI/HealthBar/HealthBar.tscn" id="3_4cpe4"]
+[ext_resource type="Theme" uid="uid://db0k0y5fk53pu" path="res://Config/UITheme.tres" id="4_yftfo"]
 
-[node name="MainUI" type="CanvasLayer"]
+[node name="MainUI" type="CanvasLayer" node_paths=PackedStringArray("_scoreLabel")]
 layer = 100
+script = ExtResource("1_upwrp")
+_scoreLabel = NodePath("ScoreLabel")
 
 [node name="VirtualJoystick" parent="." instance=ExtResource("1_52ctl")]
 position = Vector2(40, 320)
@@ -24,3 +28,17 @@ _anchorOffset = Vector2(48, 48)
 _useOnlyInBuild = true
 
 [node name="HealthBar" parent="." instance=ExtResource("3_4cpe4")]
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme = ExtResource("4_yftfo")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 16
+text = "Score: 100000"
+horizontal_alignment = 2

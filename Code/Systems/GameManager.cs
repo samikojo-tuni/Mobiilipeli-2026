@@ -33,6 +33,8 @@ public partial class GameManager : Node
 	}
 	#endregion
 
+	[Signal] public delegate void ScoreChangedEventHandler(int currentScore);
+
 	#region Game Data
 	private int _score = 0;
 	private SceneTree _sceneTree = null;
@@ -59,7 +61,7 @@ public partial class GameManager : Node
 			// TODO: Mieti parempi maksimiarvo.
 			_score = Mathf.Clamp(value, 0, Int32.MaxValue);
 			GD.Print($"Pisteet nyt: {Score}");
-			// TODO: Päivitä pisteet käyttöliittymälle.
+			EmitSignal(SignalName.ScoreChanged, _score);
 		}
 	}
 
